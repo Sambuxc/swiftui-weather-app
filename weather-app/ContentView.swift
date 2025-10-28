@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  weather-app
 //
-//  Created by Samuel Bruton on 28/10/2025.
+//  Created by Samuel Bruton on 28/10/2025
 //
 
 import SwiftUI
