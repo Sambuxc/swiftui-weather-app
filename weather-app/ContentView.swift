@@ -9,13 +9,33 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            LinearGradient(
+                colors: [.pink, .blue, .white],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ).edgesIgnoringSafeArea(.all)  // applies background to entire screen
+
+            VStack {
+                Text("Saint Helens")
+                    .font(.system(size: 32, weight: .medium, design: .default))
+                    .foregroundColor(.white)
+                    .padding(.top)
+
+                VStack(spacing: 8) {
+                    Image(systemName: "tornado")
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 150)
+
+                    Text("76°C")
+                        .font(.system(size: 70, weight: .thin))
+                        .foregroundColor(.white)
+                }
+                Spacer()
+            }
         }
-        .padding()
     }
 }
 
