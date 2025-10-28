@@ -35,6 +35,33 @@ struct ContentView: View {
                 }
                 Spacer()
             }
+            HStack(spacing: 20) {
+                WeatherDayView(
+                    dayOfWeek: "tues",
+                    imageName: "sunrise.fill",
+                    temp: 12
+                )
+                WeatherDayView(
+                    dayOfWeek: "wed",
+                    imageName: "cloud.hail.fill",
+                    temp: 17
+                )
+                WeatherDayView(
+                    dayOfWeek: "thu",
+                    imageName: "sunset.fill",
+                    temp: 15
+                )
+                WeatherDayView(
+                    dayOfWeek: "fri",
+                    imageName: "wind.snow",
+                    temp: 9
+                )
+                WeatherDayView(
+                    dayOfWeek: "sat",
+                    imageName: "moon.stars.fill",
+                    temp: 11
+                )
+            }
         }
     }
 }
