@@ -10,11 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [.pink, .blue, .lightBlue],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            ).edgesIgnoringSafeArea(.all)  // applies background to entire screen
+            BackgroundGradient(topColor: .pink, bottomColor: .white)
 
             VStack {
                 Text("Saint Helens")
@@ -33,7 +29,6 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .thin))
                         .foregroundColor(.white)
                 }
-                Spacer()
                 
                 HStack(spacing: 20) {
                     WeatherDayView(
@@ -62,6 +57,23 @@ struct ContentView: View {
                         temp: 11
                     )
                 }
+                
+                Spacer()
+                
+                Button {
+                    // action
+                    print("tapped")
+                } label: {
+                    Text("Change Day")
+                        .foregroundStyle(.white)
+                        .font(.system(size: 32, design: .rounded))
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                }
+                    .buttonStyle(.glassProminent)
+                    .padding(.bottom, 50)
             }
         }
     }
@@ -69,4 +81,19 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+// applies background to entire screen
+struct BackgroundGradient: View {
+    var topColor: Color
+    var bottomColor: Color
+    var blendColor: Color? = nil
+    
+    var body: some View {
+        LinearGradient(
+            colors: [topColor, blendColor ?? .blue, bottomColor],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        ).edgesIgnoringSafeArea(.all)
+    }
 }
