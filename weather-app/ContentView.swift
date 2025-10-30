@@ -24,6 +24,20 @@ struct ContentView: View {
                 )
 
                 HStack(spacing: 20) {
+                    /*
+                     1. Challenge:
+                     create a data model that has the weather data,
+                     uses loop the Array to create the WeatherDayView
+                     */
+                    /*
+                     2. Challenge:
+                     make a network call to get the weather data
+                     from an api.
+                     */
+                    /*
+                     3. Challenge:
+                     create a TabView/TabBar for 5 different cities
+                     */
                     WeatherDayView(
                         dayOfWeek: "tues",
                         imageName: "sunrise.fill",
