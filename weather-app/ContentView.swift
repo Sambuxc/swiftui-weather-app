@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+
     @State private var isNight = false
-    
+
     var body: some View {
         ZStack {
-            BackgroundGradient(topColor: isNight ? .black : .pink,
-                               bottomColor: isNight ? .gray : .white)
+            BackgroundGradient(isNight: $isNight) // passes in a binding state to isNight with the $
 
             VStack {
                 CityTextView(cityName: "Santa Cruz")
 
-                MainWeatherView(imageName: isNight ? "moon.stars.fill" : "sun.max.fill", temp: "19°C")
+                MainWeatherView(
+                    imageName: isNight ? "moon.stars.fill" : "sun.max.fill",
+                    temp: "19°C"
+                )
 
                 HStack(spacing: 20) {
                     WeatherDayView(
@@ -76,13 +78,20 @@ struct ContentView: View {
 
 // applies background to entire screen
 struct BackgroundGradient: View {
-    var topColor: Color
-    var bottomColor: Color
-    var blendColor: Color? = nil
+
+    @Binding var isNight: Bool
+
+//    var topColor: Color
+//    var bottomColor: Color
+//    var blendColor: Color? = nil
 
     var body: some View {
         LinearGradient(
-            colors: [topColor, blendColor ?? .blue, bottomColor],
+            colors: [
+                isNight ? .black : .pink,
+                .blue,
+                isNight ? .gray : .white,
+            ],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         ).edgesIgnoringSafeArea(.all)
