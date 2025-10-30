@@ -13,23 +13,10 @@ struct ContentView: View {
             BackgroundGradient(topColor: .pink, bottomColor: .white)
 
             VStack {
-                Text("Saint Helens")
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .padding(.top)
-                
-                VStack(spacing: 8) {
-                    Image(systemName: "tornado")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 150, height: 150)
-                    
-                    Text("76°C")
-                        .font(.system(size: 70, weight: .thin))
-                        .foregroundColor(.white)
-                }
-                
+                CityTextView(cityName: "Santa Cruz")
+
+                MainWeatherView(imageName: "tornado", temp: "19°C")
+
                 HStack(spacing: 20) {
                     WeatherDayView(
                         dayOfWeek: "tues",
@@ -39,7 +26,8 @@ struct ContentView: View {
                     WeatherDayView(
                         dayOfWeek: "wed",
                         imageName: "cloud.hail.fill",
-                        temp: 17
+                        temp: 17,
+                        imageSize: 30
                     )
                     WeatherDayView(
                         dayOfWeek: "thu",
@@ -57,23 +45,22 @@ struct ContentView: View {
                         temp: 11
                     )
                 }
-                
+
                 Spacer()
-                
+
                 Button {
                     // action
                     print("tapped")
                 } label: {
-                    Text("Change Day")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 32, design: .rounded))
-                        .padding(.leading, 20)
-                        .padding(.trailing, 20)
-                        .padding(.top, 5)
-                        .padding(.bottom, 5)
+                    WeatherBtnLabel(
+                        title: "Change Day",
+                        textColor: .white,
+                        textSize: 32,
+                        textDesign: Font.Design.rounded
+                    )
                 }
-                    .buttonStyle(.glassProminent)
-                    .padding(.bottom, 50)
+                .buttonStyle(.glassProminent)
+                .padding(.bottom, 50)
             }
         }
     }
@@ -88,12 +75,66 @@ struct BackgroundGradient: View {
     var topColor: Color
     var bottomColor: Color
     var blendColor: Color? = nil
-    
+
     var body: some View {
         LinearGradient(
             colors: [topColor, blendColor ?? .blue, bottomColor],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         ).edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct CityTextView: View {
+
+    var cityName: String
+
+    var body: some View {
+        Text(cityName)
+            .font(.system(size: 32, weight: .medium, design: .default))
+            .foregroundColor(.white)
+            .padding(.top)
+    }
+}
+
+struct MainWeatherView: View {
+
+    var imageName: String
+    var temp: String
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 150, height: 150)
+                .padding(.top)
+                .padding(.bottom)
+
+            Text(temp)
+                .font(.system(size: 70, weight: .thin))
+                .foregroundColor(.white)
+                .padding(.bottom)
+        }
+    }
+}
+
+struct WeatherBtnLabel: View {
+
+    var title: String
+    var textColor: Color
+    var textSize: CGFloat
+    var textDesign: Font.Design
+
+    var body: some View {
+
+        Text(title)
+            .foregroundStyle(textColor)
+            .font(.system(size: textSize, design: textDesign))
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
+            .padding(.top, 5)
+            .padding(.bottom, 5)
     }
 }

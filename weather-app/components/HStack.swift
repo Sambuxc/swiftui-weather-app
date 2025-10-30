@@ -11,6 +11,7 @@ struct WeatherDayView: View {
     var dayOfWeek: String
     var imageName: String
     var temp: Int
+    var imageSize: CGFloat = 40
 
     var body: some View {
 
@@ -22,7 +23,7 @@ struct WeatherDayView: View {
                 .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 40)
+                .frame(width: imageSize)
             Text("\(temp)°")
                 .font(.title)
                 .textCase(.uppercase)
