@@ -22,7 +22,7 @@ struct WeatherDayView: View {
             Image(systemName: imageName)
                 .symbolRenderingMode(.palette)
                 .resizable()
-                .foregroundStyle(.white, .lightBlue, .lightPink)
+                .foregroundStyle(.white, .yellow, .lightPink)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: imageSize)
             Text("\(temp)°")
