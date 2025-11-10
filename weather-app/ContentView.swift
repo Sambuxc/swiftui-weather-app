@@ -76,10 +76,12 @@ struct ContentView: View {
                         title: isNight ? "Night Mode" : "Day Mode",
                         textColor: .white,
                         textSize: 32,
-                        textDesign: Font.Design.rounded
+                        textDesign: Font.Design.rounded,
                     )
                 }
-                .buttonStyle(.glassProminent)
+//                .buttonStyle(.glassProminent) // alternative way to style the button
+                .background(.blue.gradient)
+                .cornerRadius(50)
                 .padding(.bottom, 50)
             }
         }
@@ -102,13 +104,17 @@ struct BackgroundGradient: View {
     var body: some View {
         LinearGradient(
             colors: [
-                isNight ? .black : .pink,
-                .blue,
+                isNight ? .black : .pink, .blue,
                 isNight ? .gray : .white,
             ],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         ).edgesIgnoringSafeArea(.all)
+        
+        // An alternative for BG gradients
+//        ContainerRelativeShape()
+//            .fill(isNight ? Color.blue.gradient : Color.green.gradient)
+//            .ignoresSafeArea()
     }
 }
 
@@ -157,6 +163,7 @@ struct WeatherBtnLabel: View {
     var body: some View {
 
         Text(title)
+            .frame(width: 170, height: 60)
             .foregroundStyle(textColor)
             .font(.system(size: textSize, design: textDesign))
             .padding(.leading, 20)
