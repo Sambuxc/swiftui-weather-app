@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            BackgroundGradient(isNight: $isNight) // passes in a binding state to isNight with the $
+            BackgroundGradient(isNight: isNight) // passes in a binding state to isNight with the $
 
             VStack {
                 CityTextView(cityName: "Santa Cruz")
@@ -93,7 +93,7 @@ struct ContentView: View {
 // applies background to entire screen
 struct BackgroundGradient: View {
 
-    @Binding var isNight: Bool
+    var isNight: Bool
 
 //    var topColor: Color
 //    var bottomColor: Color
